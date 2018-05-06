@@ -1,10 +1,12 @@
-import * as widgetActions from '../actions/widget';
+import { combineReducers } from 'redux';
+
+import * as actions from './actions';
 
 const widgetReducer = (state = {
     softwareId: null
 }, action) => {
     switch (action.type) {
-        case widgetActions.GET_VERSIONINFO:
+        case actions.GET_VERSIONINFO:
             return {
                 ...state,
                 softwareId: action.softwareId
@@ -14,4 +16,6 @@ const widgetReducer = (state = {
     }
 }
 
-export default widgetReducer;
+export default combineReducers({
+    widgetReducer
+})
