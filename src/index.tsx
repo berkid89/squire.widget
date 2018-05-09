@@ -6,10 +6,12 @@ import thunk from 'redux-thunk';
 import App from './App';
 import rootReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
+import { syncTranslationWithStore } from 'react-redux-i18n';
 
 import './index.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+syncTranslationWithStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
