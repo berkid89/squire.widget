@@ -1,22 +1,34 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import { getVerionInfo } from './actions';
+import { loadSettings } from './actions';
 
-import logo from './logo.svg';
+class App extends React.Component<any, any> {
+  constructor(props) {
+    super(props);
+  }
 
-class App extends React.Component {
+  async componentWillMount() {
+    await this.props.loadSettings();
+    await this.props.getVerionInfo("5aae50054fb5aa123c8f8548", "DEV");
+  }
+
+
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      this.props.software && <div className="test">
+        {this.props.software.name} -
+        <span> {this.props.software.releaseNotes[0].versionNumber}</span>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    software: state.app.software
+  };
+};
+
+export default connect(mapStateToProps, { loadSettings, getVerionInfo })(App);

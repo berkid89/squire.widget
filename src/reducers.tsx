@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { i18nReducer } from 'react-redux-i18n';
 
 import * as actions from './actions';
 
@@ -11,7 +12,7 @@ const widgetReducer = (state = {
         case actions.GET_VERSIONINFO_FINISHED:
             return {
                 ...state,
-                softwareId: action.softwareId
+                software: action.payload
             };
         case actions.INCREASE_REQUEST_COUNTER:
         case actions.DECREASE_REQUEST_COUNTER: {
@@ -33,5 +34,6 @@ const widgetReducer = (state = {
 }
 
 export default combineReducers({
-    widgetReducer
+    app: widgetReducer,
+    i18n: i18nReducer,
 })

@@ -1,17 +1,20 @@
 import { loadTranslations, setLocale } from 'react-redux-i18n';
+import { GET } from './api';
+import { Endpoints } from './constants';
 
 export const GET_VERSIONINFO_FINISHED = "GET_VERSIONINFO_FINISHED";
 export const INCREASE_REQUEST_COUNTER = "INCREASE_REQUEST_COUNTER";
 export const DECREASE_REQUEST_COUNTER = "DECREASE_REQUEST_COUNTER";
 export const LOAD_SETTINGS_FINISHED = "LOAD_SETTINGS_FINISHED";
 
-export const getVerionInfo = softwareId => ({
-    type: GET_VERSIONINFO_FINISHED, softwareId
-});
+export const getVerionInfo = (softwareId, envName) => async (dispatch, getState) =>{
+	const resp = await GET(dispatch, getState, Endpoints.SHOW, { id: softwareId, envName });
+	dispatch(getVerionInfoFinished(resp.data));
+};
 
 export const getVerionInfoFinished = (software) => ({
-    type: GET_VERSIONINFO_FINISHED, 
-    payload: software
+	type: GET_VERSIONINFO_FINISHED,
+	payload: software
 });
 
 
