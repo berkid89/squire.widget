@@ -1,12 +1,16 @@
+html {
+  font-size: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  max-width: 200px;
-  max-height: 50px;
-  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-.test {
-  background-color: darkgoldenrod;
+button:disabled {
+  opacity: 0.5;
 }
