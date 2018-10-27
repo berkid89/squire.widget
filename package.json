@@ -1,6 +1,6 @@
 {
   "private": true,
-  "homepage": "https://create-react-app-redux.now.sh",
+  "homepage": "https://github.com/berkid89/squire.widget",
   "scripts": {
     "deploy": "now && now alias",
     "start": "react-scripts start",

@@ -11,3 +11,5 @@ npm install
 ```bash
 npm start
 ```
+
+Boilerplate based on: https://github.com/notrab/create-react-app-redux

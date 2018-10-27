@@ -1,20 +1,28 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import Home from '../home'
-import About from '../about'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { showProduct } from '../../modules/widget'
 
-const App = () => (
+const App = (props) => (
   <div>
-    <header>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-    </header>
-
-    <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about-us" component={About} />
-    </main>
+    Hi! <p>{props.isLoading.toString()}</p>
   </div>
 )
 
-export default App
+const mapStateToProps = ({ widget }) => ({
+  product: widget.product,
+  isLoading: widget.isLoading
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      showProduct
+    },
+    dispatch
+  )
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
