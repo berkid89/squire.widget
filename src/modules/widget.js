@@ -23,14 +23,19 @@ export default (state = initialState, action) => {
     }
 }
 
-export const showProduct = () => {
-    return dispatch => {
-      dispatch({
+export const showProduct = (productId) => async (dispatch, getState) => {
+    dispatch({
         type: SHOWPRODUCT_REQUESTED
-      })
-  
-      dispatch({
-        type: SHOWPRODUCT
-      })
-    }
-  }
+    })
+
+    const res = await fetch("http://localhost:7071/api/ProductInfo?productId=" + productId);
+    const product = await res.json();
+    
+    dispatch({
+        type: SHOWPRODUCT,
+        payload: {
+            product,
+        }
+    })
+
+}
